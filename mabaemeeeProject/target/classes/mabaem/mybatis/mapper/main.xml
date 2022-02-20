@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="mabaem.mybatis.mapper.main">
+ 
+ 	<!-- 온습도 현재 시간 내역 -->
+ 	<select id="temp_hum" parameterType="map" resultType="map">
+ 		
+ 		SELECT T2.*
+		  FROM (
+		        SELECT ROW_NUMBER() OVER(ORDER BY T1.DATE DESC) AS num 
+		                  ,DATE as day
+		                  ,TEMPERATURE as temp
+		                  ,HUMIDITY as hum
+		          FROM TEMP_HUM T1
+		       ) T2
+		 WHERE T2.NUM = 1;
+ 		
+ 	</select>
+ </mapper>	

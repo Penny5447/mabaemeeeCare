@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="mabaem.mybatis.mapper.temp_hum">
+ 	
+ 	<!-- 시간대별 내역조회 -->
+ 	<select id="time_temp_hum" parameterType="map" resultType="map">
+ 		  SELECT 
+                   date_format(DATE, '%Y-%m-%d %H') as day
+                  ,TEMPERATURE as temp
+                  ,HUMIDITY as hum
+          FROM TEMP_HUM
+          	where  date_format(DATE, '%Y-%m-%d') = DATE_FORMAT(NOW(),'%Y-%m-%d');
+ 	</select>
+ </mapper>
